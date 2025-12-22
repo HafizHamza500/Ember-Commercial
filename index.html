@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO -->
+<title>Ember Commercial | Off-Market Commercial Real Estate</title>
+<meta name="description" content="Ember Commercial specializes in off-market multifamily, office, and retail real estate acquisitions with expert sourcing and execution.">
+<meta name="keywords" content="commercial real estate, off market deals, multifamily, retail centers, office buildings">
+<meta name="author" content="Ember Commercial">
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Ember Commercial",
+  "url": "https://embercommercial.com",
+  "telephone": "+1-123-456-7890",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "US"
+  }
+}
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ember: '#ae2535',
+        dark: '#0F172A'
+      }
+    }
+  }
+}
+</script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="Ember_commercial_jiiw76.png" type="image/x-icon">
+  </head>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+</head>
+
+<body id="top" class="bg-slate-50 text-slate-800">
+
+<!-- ================= NAV ================= -->
+<header class="fixed w-full bg-white shadow z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-2 font-bold text-xl">
+      <a href="index.html" class="flex items-center space-x-2">
+        <span class="text-ember">
+          <img src="Ember_commercial_jiiw76.png" alt="Ember Commercial Logo" class="h-8 inline-block">
+        </span>
+        <span>Ember Commercial</span>
+      </a>
+    </div>
+
+    <nav class="hidden md:flex items-center space-x-8">
+      <a href="#work" class="hover:text-ember">How We Work</a>
+      <a href="#portfolio" class="hover:text-ember">Portfolio</a>
+      <a href="#contact" class="hover:text-ember">Contact</a>
+      <a href="tel:+11234567890" class="text-ember font-semibold">(123) 456-7890</a>
+    </nav>
+
+    <button id="menuBtn" class="md:hidden text-2xl p-2 rounded-md" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"> 
+      <span id="menuIcon">☰</span>
+    </button>
+  </div>
+
+  <!-- Mobile menu backdrop -->
+  <div id="mobileBackdrop" class="hidden fixed inset-0 bg-black/50 z-40"></div>
+
+  <!-- Mobile menu (fixed overlay) -->
+  <nav id="mobileMenu" class="hidden fixed top-16 inset-x-4 bg-white rounded-xl shadow-lg z-50 p-6 md:hidden" role="menu" aria-hidden="true">
+    <div class="flex flex-col space-y-4 text-lg">
+      <a href="#work" class="block py-3 px-4 rounded hover:bg-slate-100" role="menuitem">How We Work</a>
+      <a href="#portfolio" class="block py-3 px-4 rounded hover:bg-slate-100" role="menuitem">Portfolio</a>
+      <a href="#contact" class="block py-3 px-4 rounded hover:bg-slate-100" role="menuitem">Contact</a>
+      <a href="tel:+11234567890" class="block py-3 px-4 rounded font-semibold text-ember" role="menuitem">(123) 456-7890</a>
+    </div>
+  </nav>
+</header>
+
+<div class="h-20"></div>
+
+<!-- ================= HERO ================= -->
+<section class="relative bg-cover bg-center"
+style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab'); background-attachment:scroll;">
+
+<div class="absolute inset-0 bg-black/65"></div>
+
+<div class="relative max-w-6xl mx-auto px-6 py-20 md:py-32 grid md:grid-cols-2 gap-8 md:gap-24 text-white">
+  <div>
+    <h1 class="text-5xl font-bold mb-6 max-w-xl">
+      Off-Market Commercial Real Estate Experts
+    </h1>
+    <p class="text-lg text-slate-200 mb-8 max-w-lg">
+      Trusted acquisition partner for multifamily, office, and retail assets.
+    </p>
+  </div>
+
+  <!-- HERO FORM -->
+  <form id="heroForm" class="bg-white text-slate-800 rounded-2xl p-6 md:p-8 shadow-xl space-y-4 max-w-md w-full mx-auto">
+    <h2 class="text-2xl font-semibold text-center mb-4">Submit Your Property</h2>
+    <input name="name" required placeholder="Full Name" class="w-full border rounded-xl px-4 py-3 name-field" autocomplete="name">
+    <input name="email" type="email" required placeholder="Email Address" class="w-full border rounded-xl px-4 py-3">
+    <input name="phone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="15" required placeholder="Phone (numbers only)" class="w-full border rounded-xl px-4 py-3 phone-field">
+    <input name="address" placeholder="Property Address" required class="w-full border rounded-xl px-4 py-3">
+    <button class="w-full bg-ember text-white py-3 rounded-xl font-semibold">
+      Send Details
+    </button>
+  </form>
+</div>
+</section>
+
+<!-- ================= WHO WE ARE ================= -->
+<section id="about" class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+    <!-- Text -->
+    <div>
+      <h2 class="text-3xl font-bold mb-6">Who We Are</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Ember Commercial is a relationship-driven commercial real estate firm
+        focused on sourcing and acquiring high-quality off-market assets across
+        multifamily, office, and retail sectors.
+      </p>
+      <p class="text-slate-600 leading-relaxed">
+        We operate with an institutional mindset while maintaining the agility
+        and discretion of a boutique firm. Our approach prioritizes trust,
+        transparency, and long-term alignment with property owners and capital
+        partners.
+      </p>
+    </div>
+
+    <!-- Image -->
+    <div class="relative">
+      <img
+        loading="lazy"
+        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+        alt="Commercial Real Estate Team"
+        class="rounded-2xl shadow-lg"
+      >
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= OUR SERVICES ================= -->
+<section id="services" class="py-24 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <h2 class="text-3xl font-bold text-center mb-16">Our Services</h2>
+
+    <div class="grid md:grid-cols-3 gap-14 md:px-10">
+
+      <!-- Service 1 -->
+      <div>
+        <h3 class="text-xl font-semibold mb-3">
+          Off-Market Deal Sourcing
+        </h3>
+        <p class="text-slate-600 leading-relaxed">
+          Direct access to exclusive opportunities through owner relationships,
+          broker partnerships, and proprietary outreach.
+        </p>
+      </div>
+
+      <!-- Service 2 -->
+      <div>
+        <h3 class="text-xl font-semibold mb-3">
+          Acquisition & Underwriting
+        </h3>
+        <p class="text-slate-600 leading-relaxed">
+          Institutional-grade financial analysis with disciplined assumptions
+          to ensure risk-adjusted performance.
+        </p>
+      </div>
+
+      <!-- Service 3 -->
+      <div>
+        <h3 class="text-xl font-semibold mb-3">
+          Transaction Execution
+        </h3>
+        <p class="text-slate-600 leading-relaxed">
+          End-to-end execution including due diligence coordination, closing
+          management, and stakeholder communication.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= HOW WE WORK ================= -->
+<section id="work" class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-16">How We Work</h2>
+    <div class="relative border-l-2 border-ember pl-10 space-y-12 md:max-w-4xl md:mx-auto">
+      <div class="relative">
+        <span class="absolute -left-3 bg-ember w-6 h-6 rounded-full ring-2 ring-white"></span>
+        <div class="md:pl-6">
+          <h3 class="text-xl font-semibold">Relationship-Driven Sourcing</h3>
+          <p class="text-slate-600 max-w-md">
+            We cultivate long-term relationships with owners, brokers, and operators to source off-market opportunities before they hit the open market.
+          </p>
+        </div>
+      </div>
+
+      <div class="relative">
+        <span class="absolute -left-3 bg-ember w-6 h-6 rounded-full ring-2 ring-white"></span>
+        <div class="md:pl-6">
+          <h3 class="text-xl font-semibold">Disciplined Underwriting</h3>
+          <p class="text-slate-600 max-w-md">
+            Our underwriting blends institutional rigor with conservative assumptions to identify value and mitigate risk.
+          </p>
+        </div>
+      </div>
+
+      <div class="relative">
+        <span class="absolute -left-3 bg-ember w-6 h-6 rounded-full ring-2 ring-white"></span>
+        <div class="md:pl-6">
+          <h3 class="text-xl font-semibold">Seamless Execution</h3>
+          <p class="text-slate-600 max-w-md">
+            We coordinate financing, due diligence, and closing logistics with transparency and timeliness to deliver reliable outcomes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AUTO MOVING PORTFOLIO ================= -->
+<section id="portfolio" class="py-24 bg-slate-100 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 mb-12 text-center">
+    <h2 class="text-3xl font-bold mb-4">Portfolio Highlights</h2>
+    <p class="text-slate-600">
+      A snapshot of multifamily, office, and retail assets we pursue.
+    </p>
+  </div>
+
+  <!-- ROW 1 -->
+  <div class="relative w-full overflow-hidden mb-10">
+    <div class="flex gap-6 animate-scroll-left w-max">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1501183638710-841dd1904471" class="gallery-img">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72" class="gallery-img">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1555636222-cae831e670b3" class="gallery-img">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" class="gallery-img">
+      <!-- duplicate for seamless loop -->
+      <img loading="lazy" src="https://images.unsplash.com/photo-1501183638710-841dd1904471" class="gallery-img">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72" class="gallery-img">
+    </div>
+  </div>
+
+  <!-- ROW 2 -->
+  <div class="relative w-full overflow-hidden">
+    <div class="flex gap-6 animate-scroll-right w-max">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1555636222-cae831e670b3" class="gallery-img">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab" class="gallery-img">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" class="gallery-img">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" class="gallery-img">
+      <!-- duplicate -->
+      <img loading="lazy" src="https://images.unsplash.com/photo-1555636222-cae831e670b3" class="gallery-img">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab" class="gallery-img">
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= TESTIMONIAL ================= -->
+<section class="py-24 bg-slate-50">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+
+    <h2 class="text-3xl font-bold mb-12">What Our Partners Say</h2>
+
+    <div class="bg-white rounded-2xl shadow-lg p-10 md:p-14 relative">
+      <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-ember text-6xl">“</span>
+
+      <p class="text-xl text-slate-700 leading-relaxed mb-8 max-w-3xl mx-auto">
+        Ember Commercial approaches real estate with integrity, discipline, and
+        a long-term mindset. Their ability to source off-market opportunities
+        and execute seamlessly sets them apart.
+      </p>
+
+      <div class="flex flex-col items-center">
+        <div class="w-14 h-14 rounded-full bg-ember text-white flex items-center justify-center font-bold text-lg">
+          CP
+        </div>
+        <p class="mt-4 font-semibold">Capital Partner</p>
+        <p class="text-sm text-slate-500">Private Investment Firm</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+
+    <img src="" alt="">
+
+    <form id="contactForm" class="space-y-4">
+      <h2 class="text-3xl font-bold mb-4">Get in Touch</h2>
+      <input name="name" required placeholder="Full Name" class="w-full border rounded-xl px-4 py-3 name-field" autocomplete="name">
+      <input name="email" type="email" required placeholder="Email Address" class="w-full border rounded-xl px-4 py-3">
+      <input name="phone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="15" required placeholder="Phone" class="w-full border rounded-xl px-4 py-3 phone-field">
+      <input name="address" placeholder="Property Address" required class="w-full border rounded-xl px-4 py-3">
+      <textarea name="message" placeholder="Message" class="w-full border rounded-xl px-4 py-3 h-28"></textarea>
+      <button class="bg-ember text-white py-3 rounded-xl w-full font-semibold">
+        Submit Inquiry
+      </button>
+    </form>
+
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-dark text-slate-400 py-12 text-center">
+  <div class="max-w-3xl mx-auto px-6">
+    <a href="index.html" class="inline-block mb-4">
+      <img src="Ember_commercial_jiiw76.png" alt="Ember Commercial Logo" class="h-16 mx-auto">
+      <p class="inline-block mt-2">Ember Commercial</p>
+    </a>
+
+    <p class="text-slate-300 mb-6">Off-market commercial real estate acquisitions — multifamily, office, and retail.</p>
+
+    <div class="flex items-center justify-center space-x-4">
+      <p class="text-slate-400">© 2025 Ember Commercial</p>
+      <a href="privacy-policy.html" class="text-slate-300 hover:text-white">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

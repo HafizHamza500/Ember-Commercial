@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* Prevent background scroll when mobile menu is open */
+.no-scroll {
+    overflow: hidden;
+}
+
+/* Testimonial avatar */
+.testimonial-avatar { width:48px; height:48px; border-radius:9999px; object-fit:cover }
+
+
+.gallery-img {
+  width: 420px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Animations */
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-scroll-left {
+  animation: scrollLeft 45s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scrollRight 55s linear infinite;
+}
+
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .gallery-img {
+    width: 300px;
+    height: 200px;
+  }
+}
