@@ -9,44 +9,36 @@
     <link rel="stylesheet" href="style.css">
 
   <style>
-    /* header spacing: adjust --header-height if header size changes */
-    body { background:#fff; color:#1a1a1a; line-height:1.8; margin:0; padding-top:var(--header-height); -webkit-font-smoothing:antialiased; }
+
+    body { background:#fff; color:#1a1a1a; line-height:1.8; margin:0; padding-top:var(--header-height); }
 
     .heading { background: linear-gradient(to right, #ae2535, #ae2535); color:#000000; padding:150px 20px; text-align:center; margin-top: 0; justify-content: center; display: flex; flex-direction: column; align-items: center; }
     .heading h1 { margin-bottom:5px; font-size:clamp(1.6rem,4vw,3rem); font-weight: 800; }
     .heading p { font-size:clamp(0.95rem,2.2vw,1.1rem); opacity:0.85; font-weight:700; margin:0; }
 
     /* Main content container */
-    .all-section { max-width:900px; margin:2rem auto; padding:0 20px 4rem; box-sizing:border-box; }
-    .all-section h2 { margin-top:2rem; font-size:1.3rem; color:#0a0f14; }
-    .all-section h3 { margin-top:1.2rem; font-size:1.1rem; color:#333; }
+    .all-section { max-width:900px; margin:1rem auto; padding:2.5rem 20px 4rem; box-sizing:border-box; }
+    .all-section h2 { margin-top:2rem; margin-bottom:1rem; font-size:1.3rem; color:#0a0f14; font-weight: 500; }
+    .all-section h3 { margin-top:1.2rem; margin-bottom:1rem; font-size:1.1rem; color:#333; }
     .all-section ul { margin-left:1.5rem; padding-left:1rem; list-style-type:disc; list-style-position:outside; }
-    .all-section li { margin-bottom:0.45rem; }
+    .all-section li { margin-bottom:0.45rem; margin-top:0.7rem; }
+    .all-section p { margin-bottom:1rem; margin-top:0.7rem; }
+    .all-section a { word-break:break-word; overflow-wrap:anywhere; }
 
 
     img { max-width:100%; height:auto; display:block; }
 
     footer { padding-bottom:2.5rem; }
 
-    #siteNav .max-w-7xl > div { flex-wrap:wrap; gap:0.5rem; }
+    .company-name { font-size: 1.3rem ; }
 
-    .phone-link { display:inline-block; background:#ae2535; color:#ffffff; padding:0.6rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; }
-    .phone-link.small { padding:0.4rem 0.75rem; font-size:0.95rem; }
-
+    .phone-link { display:inline-block; background:#ae2535; color:#ffffff; padding:0.6rem 0.7rem; border-radius:0.5rem; font-weight:600; text-decoration:none;}
     /* Media Queries */
     @media (max-width:768px) {
-      .heading { padding:64px 16px; }
       .heading h1 { font-size:2rem; }
       .heading p { font-size:1rem; }
-      .all-section { padding:0 16px 3rem; }
-      .max-w-7xl { padding-left:1rem; padding-right:1rem; }
-    }
-
-    @media (max-width:420px) {
-      .heading { padding:48px 12px; }
-      .heading h1 { font-size:1.6rem; }
-      .md\:flex { display:block; }
-      .inline-block { display:inline-block; }
+      .phone-link { font-size: 0.6em ; }
+      .company-name { font-size: 0.8rem ; }
     }
   </style>
 </head>
@@ -54,9 +46,9 @@
  <!-- ================= NAV ================= -->
 <header class="fixed w-full bg-white shadow z-50 site-header" id="siteHeader" role="banner">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <div class="flex items-center space-x-2 font-bold text-xl">
+    <div class="flex items-center space-x-2 font-bold company-name">
       <a href="index.html" class="flex items-center space-x-2">
-        <span class="text-ember">
+        <span>
           <img src="Ember_commercial_jiiw76.png" alt="Ember Commercial Logo" class="h-8 inline-block">
         </span>
         <span style="color:#ae2535 ; font-weight: bold;">Ember <span style="font-weight: 400;">Commercial</span></span>
@@ -64,7 +56,7 @@
     </div>
 
     <nav class="flex items-center space-x-8" aria-label="Primary">
-      <a href="tel:+11234567890" class="text-ember font-semibold phone-link small">(123) 456-7890</a>
+      <a href="tel:+11234567890" class="font-semibold phone-link small">(123) 456-7890</a>
     </nav>
   </div>
 </header>
@@ -163,9 +155,8 @@ Provide us with feedback on our products or services.
 
   <h2>9. Google Advertising</h2>
   <p>
-   Google’s advertising requirements can be summed up by Google’s Advertising Principles. They are put in place to provide a positive experience for users. <a href="https://support.google.com/adwordspolicy/answer/1316548?hl=en" target="_blank">
-      https://support.google.com/adwordspolicy/answer/1316548?hl=en
-   </a>.
+   Google’s advertising requirements can be summed up by Google’s Advertising Principles. They are put in place to provide a positive experience for users.
+   <a href="https://support.google.com/adwordspolicy/answer/1316548?hl=en" target="_blank" rel="noopener noreferrer">https://support.google.com/adwordspolicy/answer/1316548?hl=en</a>.
   </p>
 <strong>We use Google AdSense Advertising on our website.</strong>
 
@@ -270,8 +261,8 @@ Provide us with feedback on our products or services.
     <p class="text-slate-300 mb-6">Off-market commercial real estate acquisitions — multifamily, office, and retail.</p>
 
     <div class="flex items-center justify-center space-x-4">
-      <p class="text-slate-400">© 2025 Ember Commercial</p>
-      <a href="privacy-policy.html" class="text-slate-300 hover:text-white">Privacy Policy</a>
+      <p class="text-slate-400">© 2025 <span style="color:#ae2535 ; font-weight: bold;">Ember <span style="font-weight: 400;">Commercial</span></span></p>
+      <a href="privacy-policy.html" class="text-[#ae2535] hover:text-white ">Privacy Policy</a>
     </div>
   </div>
 </footer>

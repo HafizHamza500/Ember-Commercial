@@ -1,27 +1,3 @@
-emailjs.init("0B5h7tP2Jx7zVJ73o");
-
-function sendEmail(form) {
-  emailjs.sendForm(
-    "service_f4ozl9o",
-    "YOUR_TEMPLATE_ID",
-    form
-  ).then(() => {
-    if (window.Swal) {
-      Swal.fire({icon:'success',title:'Message sent',text:'We received your message and will be in touch.'});
-    } else {
-      alert("Message sent successfully!");
-    }
-    form.reset();
-  }).catch(err => {
-    console.error('EmailJS error:', err);
-    if (window.Swal) {
-      Swal.fire({icon:'error',title:'Send failed',text:'Failed to send message. Please try again later.'});
-    } else {
-      alert('Failed to send message. Please try again later.');
-    }
-  });
-}
-
 // Phone helpers: formatting and validation for US numbers
 function cleanPhoneDigits(value){
   return (value||'').toString().replace(/\D/g,'');
@@ -51,8 +27,9 @@ function formatUSPhone(digits){
 const heroForm = document.getElementById("heroForm");
 const contactForm = document.getElementById("contactForm");
 
-if (heroForm) {
-  heroForm.addEventListener('submit', e => {
+function attachPhoneValidatedSubmit(form) {
+  if (!form) return;
+  form.addEventListener('submit', e => {
     e.preventDefault();
     const phoneInput = e.target.querySelector('input[name="phone"]');
     const digits = cleanPhoneDigits(phoneInput ? phoneInput.value : '');
@@ -64,29 +41,18 @@ if (heroForm) {
       }
       return;
     }
-    // normalize phone field to formatted value before sending
     if (phoneInput) phoneInput.value = formatUSPhone(digits);
-    sendEmail(e.target);
+    if (typeof sendEmail === 'function') {
+      sendEmail(e.target);
+    } else {
+      // fallback to native submit if no sendEmail handler is present
+      form.submit();
+    }
   });
 }
 
-if (contactForm) {
-  contactForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const phoneInput = e.target.querySelector('input[name="phone"]');
-    const digits = cleanPhoneDigits(phoneInput ? phoneInput.value : '');
-    if (!isValidUSPhone(digits)){
-      if (window.Swal) {
-        Swal.fire({icon:'error',title:'Invalid phone',text:'Please enter a valid US phone number (10 digits).'});
-      } else {
-        alert('Please enter a valid US phone number (10 digits).');
-      }
-      return;
-    }
-    if (phoneInput) phoneInput.value = formatUSPhone(digits);
-    sendEmail(e.target);
-  });
-}
+attachPhoneValidatedSubmit(heroForm);
+attachPhoneValidatedSubmit(contactForm);
 
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -147,30 +113,6 @@ if (menuBtn && mobileMenu) {
   });
 }
 
-// FAQ: ensure only one details in #faq is open at a time (use click on summary)
-const faqSection = document.getElementById('faq');
-if (faqSection) {
-  faqSection.querySelectorAll('details').forEach(d => d.open = false);
-  faqSection.querySelectorAll('summary').forEach(summary => {
-    summary.addEventListener('click', (e) => {
-      // Prevent default native toggle to control behavior reliably
-      e.preventDefault();
-      const details = summary.parentElement;
-      const isOpen = details.open;
-      // Close all
-      faqSection.querySelectorAll('details').forEach(other => other.open = false);
-      // Toggle clicked
-      details.open = !isOpen;
-    });
-    // keyboard support for Enter/Space
-    summary.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        summary.click();
-      }
-    });
-  });
-}
 
 // Input sanitization: name fields (no numbers), phone fields (digits only)
 document.querySelectorAll('.name-field').forEach(input => {
@@ -195,3 +137,77 @@ document.querySelectorAll('.phone-field').forEach(input => {
     input.value = formatUSPhone(digits);
   });
 });
+
+
+  const testimonials = [
+    {
+      text: "Ember Commercial approaches real estate with integrity, discipline, and a long-term mindset. Their off-market sourcing is exceptional.",
+      name: "Capital Partner",
+      role: "Private Investment Firm"
+    },
+    {
+      text: "Their execution is precise, communication is clear, and the entire acquisition process was handled professionally.",
+      name: "Property Owner",
+      role: "Multifamily Seller"
+    },
+    {
+      text: "Strong relationships, disciplined underwriting, and consistent delivery of quality opportunities.",
+      name: "Broker Partner",
+      role: "Commercial Brokerage"
+    }
+  ];
+
+  let current = 0;
+  const card = document.getElementById("testimonialCard");
+  const textEl = document.getElementById("testimonialText");
+  const nameEl = document.getElementById("testimonialName");
+  const roleEl = document.getElementById("testimonialRole");
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function renderTestimonial(index) {
+    if (!prefersReducedMotion) {
+      card.classList.add("opacity-0", "translate-x-6");
+    }
+
+    setTimeout(() => {
+      textEl.textContent = testimonials[index].text;
+      nameEl.textContent = testimonials[index].name;
+      roleEl.textContent = testimonials[index].role;
+
+      if (!prefersReducedMotion) {
+        card.classList.remove("opacity-0", "translate-x-6");
+      }
+    }, prefersReducedMotion ? 0 : 300);
+  }
+
+  function nextTestimonial() {
+    current = (current + 1) % testimonials.length;
+    renderTestimonial(current);
+  }
+
+  function prevTestimonial() {
+    current = (current - 1 + testimonials.length) % testimonials.length;
+    renderTestimonial(current);
+  }
+
+  // Auto slide every 3 seconds (disabled if reduced motion)
+  if (!prefersReducedMotion) {
+    setInterval(nextTestimonial, 3000);
+  }
+
+  // Initial render
+  renderTestimonial(current);
+
+  // Mobile swipe
+  let startX = 0;
+  card.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+
+  card.addEventListener("touchend", e => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) nextTestimonial();
+    if (endX - startX > 50) prevTestimonial();
+  });
+

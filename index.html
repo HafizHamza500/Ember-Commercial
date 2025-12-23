@@ -98,20 +98,31 @@ style="background-image:url('https://images.unsplash.com/photo-1486406146926-c62
 <div class="relative max-w-6xl mx-auto px-6 py-20 md:py-32 grid md:grid-cols-2 gap-8 md:gap-24 text-white">
   <div>
     <h1 class="text-5xl font-bold mb-6 max-w-xl">
-      Off-Market Commercial Real Estate Experts
+      Access Commercial Deals Before They Hit the Market
     </h1>
     <p class="text-lg text-slate-200 mb-8 max-w-lg">
-      Trusted acquisition partner for multifamily, office, and retail assets.
+      Strategic off-market acquisitions backed by expert sourcing, rigorous underwriting, and proven execution.
     </p>
   </div>
 
   <!-- HERO FORM -->
   <form id="heroForm" class="bg-white text-slate-800 rounded-2xl p-6 md:p-8 shadow-xl space-y-4 max-w-md w-full mx-auto">
     <h2 class="text-2xl font-semibold text-center mb-4">Submit Your Property</h2>
-    <input name="name" required placeholder="Full Name" class="w-full border rounded-xl px-4 py-3 name-field" autocomplete="name">
-    <input name="email" type="email" required placeholder="Email Address" class="w-full border rounded-xl px-4 py-3">
-    <input name="phone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="15" required placeholder="Phone (numbers only)" class="w-full border rounded-xl px-4 py-3 phone-field">
-    <input name="address" placeholder="Property Address" required class="w-full border rounded-xl px-4 py-3">
+    <input name="name" required placeholder="Full Name" class="w-full border rounded-xl px-4 py-3 name-field border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"  autocomplete="name">
+
+    <input name="email" type="email" required placeholder="Email Address" class="w-full border rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember  px-4 py-3">
+
+    <input name="phone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="15" required placeholder="Phone Number" class="w-full border rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember px-4 py-3 phone-field">
+
+    <input name="address" placeholder="Property Address (Street, City, State)" required class="w-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember rounded-lg px-4 py-3">
+
+    <textarea
+    name="message"
+    rows="4"
+    placeholder="Tell us about your property or opportunity"
+    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"
+  ></textarea>
+
     <button class="w-full bg-ember text-white py-3 rounded-xl font-semibold">
       Send Details
     </button>
@@ -127,15 +138,10 @@ style="background-image:url('https://images.unsplash.com/photo-1486406146926-c62
     <div>
       <h2 class="text-3xl font-bold mb-6">Who We Are</h2>
       <p class="text-slate-600 leading-relaxed mb-6">
-        Ember Commercial is a relationship-driven commercial real estate firm
-        focused on sourcing and acquiring high-quality off-market assets across
-        multifamily, office, and retail sectors.
+      Ember Commercial is a principal focused acquisition platform built to identify and secure commercial assets outside traditional listing channels. Our approach is data driven, relationship based, and execution oriented designed for investors who value discretion, speed, and certainty.
       </p>
       <p class="text-slate-600 leading-relaxed">
-        We operate with an institutional mindset while maintaining the agility
-        and discretion of a boutique firm. Our approach prioritizes trust,
-        transparency, and long-term alignment with property owners and capital
-        partners.
+       We operate across multiple commercial asset classes and market cycles, focusing on opportunities with strong fundamentals and value creation potential.
       </p>
     </div>
 
@@ -156,41 +162,54 @@ style="background-image:url('https://images.unsplash.com/photo-1486406146926-c62
 <section id="services" class="py-24 bg-slate-50">
   <div class="max-w-6xl mx-auto px-6">
 
-    <h2 class="text-3xl font-bold text-center mb-16">Our Services</h2>
+    <div class="max-w-3xl mx-auto text-center mb-20">
+      <h2 class="text-3xl font-bold mb-6">Our Services</h2>
+      <p class="text-slate-600 leading-relaxed">
+        Ember Commercial provides a focused set of acquisition services designed
+        to support owners, brokers, and capital partners throughout the
+        transaction lifecycle.
+      </p>
+    </div>
 
-    <div class="grid md:grid-cols-3 gap-14 md:px-10">
+    <div class="space-y-20 max-w-4xl mx-auto">
 
-      <!-- Service 1 -->
-      <div>
-        <h3 class="text-xl font-semibold mb-3">
+      <!-- Service 01 -->
+      <div class="flex gap-10">
+        <span class="text-ember text-4xl font-bold">01</span>
+        <div>
+          <h3 class="text-xl font-semibold mb-4">
           Off-Market Deal Sourcing
-        </h3>
-        <p class="text-slate-600 leading-relaxed">
-          Direct access to exclusive opportunities through owner relationships,
-          broker partnerships, and proprietary outreach.
-        </p>
+          </h3>
+          <p class="text-slate-600 leading-relaxed">
+          We leverage direct owner relationships, proprietary outreach, and local market intelligence to uncover opportunities not publicly marketed.
+          </p>
+        </div>
       </div>
 
-      <!-- Service 2 -->
-      <div>
-        <h3 class="text-xl font-semibold mb-3">
-          Acquisition & Underwriting
-        </h3>
-        <p class="text-slate-600 leading-relaxed">
-          Institutional-grade financial analysis with disciplined assumptions
-          to ensure risk-adjusted performance.
-        </p>
+      <!-- Service 02 -->
+      <div class="flex gap-10">
+        <span class="text-ember text-4xl font-bold">02</span>
+        <div>
+          <h3 class="text-xl font-semibold mb-4">
+            Expert Underwriting
+          </h3>
+          <p class="text-slate-600 leading-relaxed">
+           Every opportunity goes through detailed financial, market, and risk analysis ensuring disciplined investment decisions aligned with our return objectives.
+          </p>
+        </div>
       </div>
 
-      <!-- Service 3 -->
-      <div>
-        <h3 class="text-xl font-semibold mb-3">
-          Transaction Execution
-        </h3>
-        <p class="text-slate-600 leading-relaxed">
-          End-to-end execution including due diligence coordination, closing
-          management, and stakeholder communication.
-        </p>
+      <!-- Service 03 -->
+      <div class="flex gap-10">
+        <span class="text-ember text-4xl font-bold">03</span>
+        <div>
+          <h3 class="text-xl font-semibold mb-4">
+            End-to-End Execution
+          </h3>
+          <p class="text-slate-600 leading-relaxed">
+          From LOI to close, Ember Commercial manages negotiations, due diligence, and transaction execution delivering a smooth and reliable acquisition process.
+          </p>
+        </div>
       </div>
 
     </div>
@@ -199,39 +218,93 @@ style="background-image:url('https://images.unsplash.com/photo-1486406146926-c62
 
 
 <!-- ================= HOW WE WORK ================= -->
-<section id="work" class="py-24 bg-white">
+<section id="process" class="py-24 bg-white">
   <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-16">How We Work</h2>
-    <div class="relative border-l-2 border-ember pl-10 space-y-12 md:max-w-4xl md:mx-auto">
-      <div class="relative">
-        <span class="absolute -left-3 bg-ember w-6 h-6 rounded-full ring-2 ring-white"></span>
-        <div class="md:pl-6">
-          <h3 class="text-xl font-semibold">Relationship-Driven Sourcing</h3>
-          <p class="text-slate-600 max-w-md">
-            We cultivate long-term relationships with owners, brokers, and operators to source off-market opportunities before they hit the open market.
-          </p>
+
+    <h2 class="text-3xl font-bold text-center mb-20">How We Work</h2>
+
+    <div class="grid md:grid-cols-2 gap-20 items-start">
+
+      <!-- LEFT: TIMELINE -->
+      <div class="relative md:pl-10">
+
+        <!-- Vertical line -->
+        <div class="hidden md:block absolute top-0 left-2 h-full w-0.5 bg-slate-300"></div>
+
+        <!-- Step 1 -->
+        <div class="relative flex md:block pb-12 md:pb-20 items-start">
+          <span class="flex-shrink-0 w-4 h-4 bg-ember rounded-full mt-1 md:mt-0 md:absolute md:-left-5 md:top-2"></span>
+          <div class="ml-4 md:ml-0">
+            <h3 class="text-xl font-semibold mb-3">Source</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Proprietary opportunities sourced through long-standing owner,
+              broker, and capital partner relationships.
+            </p>
+          </div>
         </div>
+
+        <!-- Step 2 -->
+        <div class="relative flex md:block pb-12 md:pb-20 items-start">
+          <span class="flex-shrink-0 w-4 h-4 bg-ember rounded-full mt-1 md:mt-0 md:absolute md:-left-5 md:top-2"></span>
+          <div class="ml-4 md:ml-0">
+            <h3 class="text-xl font-semibold mb-3">Institutional Underwriting</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Disciplined financial analysis with conservative assumptions and a
+              downside-first investment mindset.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative flex md:block pb-12 md:pb-20 items-start">
+          <span class="flex-shrink-0 w-4 h-4 bg-ember rounded-full mt-1 md:mt-0 md:absolute md:-left-5 md:top-2"></span>
+          <div class="ml-4 md:ml-0">
+            <h3 class="text-xl font-semibold mb-3">Strategic Alignment</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Clear communication and alignment with all stakeholders before
+              advancing any transaction.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative flex md:block items-start">
+          <span class="flex-shrink-0 w-4 h-4 bg-ember rounded-full mt-1 md:mt-0 md:absolute md:-left-5 md:top-2"></span>
+          <div class="ml-4 md:ml-0">
+            <h3 class="text-xl font-semibold mb-3">Disciplined Execution</h3>
+            <p class="text-slate-600 leading-relaxed">
+              End-to-end execution with precision, discretion, and accountability.
+            </p>
+          </div>
+        </div>
+
       </div>
 
-      <div class="relative">
-        <span class="absolute -left-3 bg-ember w-6 h-6 rounded-full ring-2 ring-white"></span>
-        <div class="md:pl-6">
-          <h3 class="text-xl font-semibold">Disciplined Underwriting</h3>
-          <p class="text-slate-600 max-w-md">
-            Our underwriting blends institutional rigor with conservative assumptions to identify value and mitigate risk.
-          </p>
-        </div>
+      <!-- RIGHT: PROCESS PHILOSOPHY / IMAGE -->
+      <div class="mt-10 md:mt-0">
+        <h3 class="text-2xl font-semibold mb-6">
+          A Disciplined, Relationship-First Approach
+        </h3>
+
+        <p class="text-slate-600 leading-relaxed mb-6">
+          Every transaction is approached with the mindset of a long-term
+          capital partner. We prioritize trust, discretion, and alignment over
+          volume or speed.
+        </p>
+
+        <p class="text-slate-600 leading-relaxed mb-10">
+          Our process is designed to reduce friction, protect downside risk,
+          and create clarity at every stage of the acquisition.
+        </p>
+
+        <img
+          loading="lazy"
+          src="https://images.unsplash.com/photo-1507679799987-c73779587ccf"
+          alt="Professional Investment Discussion"
+          class="rounded-2xl shadow-lg max-w-full"
+        >
       </div>
 
-      <div class="relative">
-        <span class="absolute -left-3 bg-ember w-6 h-6 rounded-full ring-2 ring-white"></span>
-        <div class="md:pl-6">
-          <h3 class="text-xl font-semibold">Seamless Execution</h3>
-          <p class="text-slate-600 max-w-md">
-            We coordinate financing, due diligence, and closing logistics with transparency and timeliness to deliver reliable outcomes.
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -240,26 +313,44 @@ style="background-image:url('https://images.unsplash.com/photo-1486406146926-c62
 
 <!-- ================= TESTIMONIAL ================= -->
 <section class="py-24 bg-slate-50">
-  <div class="max-w-5xl mx-auto px-6 text-center">
+  <div class="max-w-5xl mx-auto px-6 text-center relative">
 
-    <h2 class="text-3xl font-bold mb-12">What Our Partners Say</h2>
+    <h2 class="text-3xl font-bold mb-14">What Our Partners Say</h2>
 
-    <div class="bg-white rounded-2xl shadow-lg p-10 md:p-14 relative">
+    <!-- Card -->
+    <div
+      id="testimonialCard"
+      class="bg-white rounded-2xl shadow-lg p-10 md:p-16 relative transition-all duration-700 ease-out"
+    >
       <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-ember text-6xl">“</span>
 
-      <p class="text-xl text-slate-700 leading-relaxed mb-8 max-w-3xl mx-auto">
-        Ember Commercial approaches real estate with integrity, discipline, and
-        a long-term mindset. Their ability to source off-market opportunities
-        and execute seamlessly sets them apart.
-      </p>
+      <p
+        id="testimonialText"
+        class="text-xl md:text-2xl text-slate-700 leading-relaxed mb-10 max-w-3xl mx-auto"
+      ></p>
 
-      <div class="flex flex-col items-center">
-        <div class="w-14 h-14 rounded-full bg-ember text-white flex items-center justify-center font-bold text-lg">
-          CP
-        </div>
-        <p class="mt-4 font-semibold">Capital Partner</p>
-        <p class="text-sm text-slate-500">Private Investment Firm</p>
+      <div>
+        <p id="testimonialName" class="font-semibold"></p>
+        <p id="testimonialRole" class="text-sm text-slate-500"></p>
       </div>
+    </div>
+
+    <!-- Arrows -->
+    <div class="absolute right-6 -bottom-14 flex gap-3">
+      <button
+        onclick="prevTestimonial()"
+        class="w-12 h-12 rounded-full bg-white shadow flex items-center justify-center hover:bg-slate-100 transition"
+        aria-label="Previous testimonial"
+      >
+        ←
+      </button>
+      <button
+        onclick="nextTestimonial()"
+        class="w-12 h-12 rounded-full bg-white shadow flex items-center justify-center hover:bg-slate-100 transition"
+        aria-label="Next testimonial"
+      >
+        →
+      </button>
     </div>
 
   </div>
@@ -267,29 +358,84 @@ style="background-image:url('https://images.unsplash.com/photo-1486406146926-c62
 
 
 
-<!-- ================= CONTACT ================= -->
-<section id="contact" class="py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+<!-- ================= Some TEXT & MAP + CONTACT FORM ================= -->
+<section
+  id="location"
+  class="relative py-28 bg-cover bg-center"
+  style="background-image:url('steptodown.com467398.jpg');"
+>
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/70"></div>
 
-    <img src="" alt="">
+  <div class="relative max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center text-white">
 
-    <form id="contactForm" class="space-y-4">
-      <h2 class="text-3xl font-bold mb-4">Get in Touch</h2>
-      <input name="name" required placeholder="Full Name" class="w-full border rounded-xl px-4 py-3 name-field" autocomplete="name">
-      <input name="email" type="email" required placeholder="Email Address" class="w-full border rounded-xl px-4 py-3">
-      <input name="phone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="15" required placeholder="Phone" class="w-full border rounded-xl px-4 py-3 phone-field">
-      <input name="address" placeholder="Property Address" required class="w-full border rounded-xl px-4 py-3">
-      <textarea name="message" placeholder="Message" class="w-full border rounded-xl px-4 py-3 h-28"></textarea>
-      <button class="bg-ember text-white py-3 rounded-xl w-full font-semibold">
-        Submit Inquiry
-      </button>
-    </form>
+    <!-- LEFT: CONTENT + MAP -->
+    <div>
+      <h2 class="text-3xl font-bold mb-6">Our Market Presence</h2>
+
+      <p class="text-slate-200 leading-relaxed mb-6">
+        Ember Commercial is headquartered in the United States and operates
+        nationally, with a strategic focus on high-growth metropolitan markets.
+      </p>
+
+      <p class="text-slate-200 leading-relaxed mb-8">
+        Our local market expertise combined with a national network enables us
+        to source off-market opportunities with discretion and speed.
+      </p>
+
+      <p class="font-semibold mb-8">
+        Based in the U.S. • Investing Nationwide
+      </p>
+
+      <!-- Map Image -->
+      <img
+        loading="lazy"
+        src="https://res.cloudinary.com/de7y9vclv/image/upload/v1766439144/map_USZIP_jll3xk.png"
+        alt="United States Market Coverage Map"
+        class="rounded-2xl max-w-full"
+      >
+    </div>
+
+    <!-- RIGHT: FORM -->
+    <div class="bg-white rounded-2xl p-10 shadow-2xl text-slate-800">
+      <h3 class="text-2xl font-semibold mb-6">
+        Start a Conversation
+      </h3>
+
+<form id="locationForm" class="space-y-5">
+
+  <input name="name" required placeholder="Full Name" class="w-full border rounded-xl px-4 py-3 name-field border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"  autocomplete="name">
+
+    <input name="email" type="email" required placeholder="Email Address" class="w-full border rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember  px-4 py-3">
+
+    <input name="phone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="15" required placeholder="Phone Number" class="w-full border rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember px-4 py-3 phone-field">
+
+    <input name="address" placeholder="Property Address (Street, City, State)" required class="w-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember rounded-lg px-4 py-3">
+
+  <textarea
+    name="message"
+    rows="4"
+    placeholder="Tell us about your property or opportunity"
+    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"
+  ></textarea>
+
+  <button
+    type="submit"
+    class="w-full bg-ember text-white py-3 rounded-lg font-semibold hover:bg-ember-dark transition"
+  >
+    Submit Inquiry
+  </button>
+
+</form>
+
+    </div>
 
   </div>
 </section>
 
+
 <!-- ================= FOOTER ================= -->
-<footer class="bg-dark text-slate-400 py-12 text-center">
+<footer class="bg-black text-slate-400 py-12 text-center">
   <div class="max-w-3xl mx-auto px-6">
     <a href="index.html" class="inline-block mb-4">
       <img src="Ember_commercial_jiiw76.png" alt="Ember Commercial Logo" class="h-16 mx-auto mb-2">
@@ -299,8 +445,8 @@ style="background-image:url('https://images.unsplash.com/photo-1486406146926-c62
     <p class="text-slate-300 mb-6">Off-market commercial real estate acquisitions — multifamily, office, and retail.</p>
 
     <div class="flex items-center justify-center space-x-4">
-      <p class="text-slate-400">© 2025 Ember Commercial</p>
-      <a href="privacy-policy.html" class="text-slate-300 hover:text-white">Privacy Policy</a>
+      <p class="text-slate-400">© 2025 <span style="color:#ae2535 ; font-weight: bold;">Ember <span style="font-weight: 400;">Commercial</span></span></p>
+      <a href="privacy-policy.html" class="text-slate-400 hover:text-white ">Privacy Policy</a>
     </div>
   </div>
 </footer>
