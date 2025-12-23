@@ -8,3 +8,56 @@
 .no-scroll {
     overflow: hidden;
 }
+
+/* For navi */ 
+@media (max-width: 900px) {
+  nav.md\\:flex, 
+  .phone-desktop {
+    display: none;
+  }
+  /* Compact mobile menu: override Tailwind utility sizes for mobile menu links */
+  #mobileMenu {
+    font-size: 1rem; /* base font-size for the container */
+  }
+
+  #mobileMenu a {
+    font-size: 1rem !important; /* ensure smaller size than Tailwind's text-lg */
+    padding: 0.6rem 0.9rem !important; /* reduce large vertical spacing */
+    line-height: 1.2;
+  }
+
+  header .max-w-7xl {
+    justify-content: space-between;
+  }
+
+  /* Mobile menu show/hide animation */
+  #mobileMenu {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 240ms ease, transform 200ms ease;
+    /* allow menu content to scroll independently of the body */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    max-height: 100vh;
+  }
+
+  #mobileMenu.menu-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* mobile-link specific adjustments */
+  #mobileMenu .mobile-link {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    display: block;
+  }
+
+  /* ensure the call button inside mobile menu is full-width and centered */
+  #mobileMenu a.call-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+

@@ -25,7 +25,8 @@ function formatUSPhone(digits){
 }
 
 const heroForm = document.getElementById("heroForm");
-const contactForm = document.getElementById("contactForm");
+// attach validation to the location form (id `locationForm`) used in the page
+const contactForm = document.getElementById("locationForm");
 
 function attachPhoneValidatedSubmit(form) {
   if (!form) return;
@@ -54,65 +55,56 @@ function attachPhoneValidatedSubmit(form) {
 attachPhoneValidatedSubmit(heroForm);
 attachPhoneValidatedSubmit(contactForm);
 
-const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-const mobileBackdrop = document.getElementById('mobileBackdrop');
-const menuIcon = document.getElementById('menuIcon');
-if (menuBtn && mobileMenu) {
-  const openMenu = () => {
-    // ensure element is visible (Tailwind's `hidden` sets display:none)
+
+  // Mobile menu controls: match IDs used in index.html
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+  function openMobileMenu() {
+    if (!mobileMenu) return;
+    // remove hidden so element is rendered, then add menu-open to trigger transition
     mobileMenu.classList.remove('hidden');
-    if (mobileBackdrop) mobileBackdrop.classList.remove('hidden');
-    // force a reflow so the animation class transition is picked up
-    void mobileMenu.offsetWidth;
-    mobileMenu.classList.remove('menu-hidden-anim');
-    mobileMenu.classList.add('menu-visible');
-    if (mobileBackdrop) mobileBackdrop.classList.add('backdrop-visible');
-    document.body.classList.add('no-scroll');
-    menuBtn.setAttribute('aria-expanded', 'true');
     mobileMenu.setAttribute('aria-hidden', 'false');
-    if (menuIcon) menuIcon.textContent = '✕';
-  };
-
-  const closeMenu = () => {
-    // play exit animation then hide elements and restore scroll
-    mobileMenu.classList.remove('menu-visible');
-    mobileMenu.classList.add('menu-hidden-anim');
-    if (mobileBackdrop) mobileBackdrop.classList.remove('backdrop-visible');
-    if (menuIcon) menuIcon.textContent = '☰';
-    // keep `no-scroll` during exit animation for smooth UX
-    const exitDuration = 340; // should match CSS timing
-    setTimeout(() => {
-      mobileMenu.classList.add('hidden');
-      if (mobileBackdrop) mobileBackdrop.classList.add('hidden');
-      mobileMenu.classList.remove('menu-hidden-anim');
-      document.body.classList.remove('no-scroll');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-    }, exitDuration);
-  };
-
-  menuBtn.addEventListener('click', () => {
-    const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
-    if (isOpen) closeMenu(); else openMenu();
-  });
-
-  // Close menu when a mobile link is clicked
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => closeMenu());
-  });
-
-  // Click on backdrop closes menu
-  if (mobileBackdrop) {
-    mobileBackdrop.addEventListener('click', () => closeMenu());
+    // allow next frame for transition
+    requestAnimationFrame(() => mobileMenu.classList.add('menu-open'));
+    if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'true');
+    // lock background scroll but allow the menu itself to scroll
+    document.body.classList.add('overflow-hidden');
+    document.documentElement.classList.add('no-scroll');
   }
 
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
-}
+  function closeMobileMenu() {
+    if (!mobileMenu) return;
+    // start transition
+    mobileMenu.classList.remove('menu-open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    // restore scrolling
+    document.body.classList.remove('overflow-hidden');
+    document.documentElement.classList.remove('no-scroll');
+    // after transition ends, hide with `hidden` to remove from flow
+    const removeHidden = () => {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.removeEventListener('transitionend', removeHidden);
+    };
+    // fallback timeout in case transitionend doesn't fire
+    mobileMenu.addEventListener('transitionend', removeHidden);
+    setTimeout(removeHidden, 300);
+  }
 
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+    if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+
+    // Close when any link inside the menu is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileMenu();
+    });
+  }
 
 // Input sanitization: name fields (no numbers), phone fields (digits only)
 document.querySelectorAll('.name-field').forEach(input => {
@@ -141,19 +133,19 @@ document.querySelectorAll('.phone-field').forEach(input => {
 
   const testimonials = [
     {
-      text: "Ember Commercial approaches real estate with integrity, discipline, and a long-term mindset. Their off-market sourcing is exceptional.",
-      name: "Capital Partner",
-      role: "Private Investment Firm"
+      text: "Ember Commercial has access to deals that simply don’t circulate publicly. Their sourcing and underwriting process is disciplined, transparent, and thorough. Every opportunity we reviewed was well-vetted and professionally presented.",
+      name: "David Harrington",
+      role: "Commercial Real Estate Investor"
     },
     {
-      text: "Their execution is precise, communication is clear, and the entire acquisition process was handled professionally.",
-      name: "Property Owner",
-      role: "Multifamily Seller"
+      text: "From initial discussions through closing, Ember Commercial handled the transaction with precision. Their team managed negotiations, due diligence, and execution efficiently, making the entire process straightforward and reliable.",
+      name: "Laura Mitchell",
+      role: "Managing Partner, Private Investment Group"
     },
     {
-      text: "Strong relationships, disciplined underwriting, and consistent delivery of quality opportunities.",
-      name: "Broker Partner",
-      role: "Commercial Brokerage"
+      text: "Ember Commercial understands the importance of discretion in off-market transactions. Their relationship driven approach and strong underwriting gave us confidence at every stage of the acquisition.",
+      name: "Andrew Collins",
+      role: "Principal, Commercial Asset Holdings"
     }
   ];
 
