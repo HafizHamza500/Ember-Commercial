@@ -156,17 +156,29 @@ async function sendEmail(form) {
   if (form.dataset.sending === 'true') return;
   form.dataset.sending = 'true';
 
+  // ===== BUTTON LOADER =====
+  const submitBtn = form.querySelector("button[type='submit']");
+  const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Sending...';
+  }
+
   const get = name => form.querySelector(`[name="${name}"]`);
-
+  
   const phoneDigits = get('phone').value.replace(/\D/g, '');
-
   if (phoneDigits.length !== 10) {
     Swal.fire({
       title: "Invalid Phone",
       text: "Please enter a valid 10-digit phone number.",
-      icon: "warning"
+      icon: "warning",
+      confirmButtonColor: "#137752"
     });
     form.dataset.sending = 'false';
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+    }
     return;
   }
 
@@ -176,28 +188,55 @@ async function sendEmail(form) {
     fullName: get('fullName').value.trim(),
     email: get('email').value.trim(),
     phone: get('phone').value.trim(),
-    address: get('address').value.trim(),
+    address: get('address') ? get('address').value.trim() : '',
     message: get('message').value.trim()
   };
 
   try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbw8Tozu4TR_dKQyc58XOR7EZ4NfQOIbcx_bgDffyrf9jvZBS4RoXsbY7AHZX0Xto0u4ig/exec", {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(data)
-    });
+    const res = await fetch(
+      "https://script.google.com/macros/s/AKfycbw8Tozu4TR_dKQyc58XOR7EZ4NfQOIbcx_bgDffyrf9jvZBS4RoXsbY7AHZX0Xto0u4ig/exec",
+      {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(data)
+      }
+    );
 
     const result = await res.json();
 
     if (result.status === "success") {
-      Swal.fire("Thank you!", "We’ve received your message.", "success");
+      const userName = data.fullName.split(' ')[0] || 'there';
+      Swal.fire({
+        title: `Thank you, ${userName}!`,
+        html: `
+          <p style="font-size:15px;">
+            We’ve received your message <br>
+            Our team will contact you shortly.
+          </p>
+<p style="margin-top:18px;font-weight:bold;font-size:1.1rem;color:#000;">
+              – Ember Commercial Team
+            </p>
+        `,
+        icon: "success",
+        confirmButtonText: "Close",
+        confirmButtonColor: "#137752"
+      });
       form.reset();
     } else {
       throw new Error("Submission failed");
     }
   } catch (err) {
-    Swal.fire("Error", err.message, "error");
+    Swal.fire({
+      title: "Error",
+      text: err.message,
+      icon: "error",
+      confirmButtonColor: "#137752"
+    });
   } finally {
     form.dataset.sending = 'false';
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+    }
   }
 }
