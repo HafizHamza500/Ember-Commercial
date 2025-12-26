@@ -1,205 +1,203 @@
-// Phone helpers: formatting and validation for US numbers
-function cleanPhoneDigits(value){
-  return (value||'').toString().replace(/\D/g,'');
+// ===== MOBILE MENU =====
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+function openMobileMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.remove('hidden');
+  mobileMenu.setAttribute('aria-hidden', 'false');
+  requestAnimationFrame(() => mobileMenu.classList.add('menu-open'));
+  if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'true');
+  document.body.classList.add('overflow-hidden');
+  document.documentElement.classList.add('no-scroll');
 }
 
-function isValidUSPhone(digits){
-  if (!digits) return false;
-  // allow 10-digit (local) or 11-digit starting with '1' (US with country code)
-  if (digits.length === 10) return true;
-  if (digits.length === 11 && digits.charAt(0) === '1') return true;
-  return false;
+function closeMobileMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.remove('menu-open');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('overflow-hidden');
+  document.documentElement.classList.remove('no-scroll');
+
+  const removeHidden = () => {
+    mobileMenu.classList.add('hidden');
+    mobileMenu.removeEventListener('transitionend', removeHidden);
+  };
+  mobileMenu.addEventListener('transitionend', removeHidden);
+  setTimeout(removeHidden, 300);
 }
 
-function formatUSPhone(digits){
-  // digits: only numbers, max 11 (leading 1 allowed)
-  if (!digits) return '';
-  if (digits.length === 11 && digits.charAt(0) === '1'){
-    const d = digits.slice(1);
-    return '+1 (' + d.slice(0,3) + ') ' + d.slice(3,6) + (d.length>6 ? '-' + d.slice(6,10) : (d.length>3 ? '-' + d.slice(6) : ''));
-  }
-  const d = digits.slice(0,10);
-  if (d.length <= 3) return '(' + d;
-  if (d.length <= 6) return '(' + d.slice(0,3) + ') ' + d.slice(3);
-  return '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+if (mobileMenuBtn && mobileMenu && !mobileMenu.dataset.menuListenersAttached) {
+  mobileMenuBtn.addEventListener('click', openMobileMenu);
+  if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+  mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
+  mobileMenu.dataset.menuListenersAttached = 'true';
 }
 
-const heroForm = document.getElementById("heroForm");
-// attach validation to the location form (id `locationForm`) used in the page
-const contactForm = document.getElementById("locationForm");
+// ===== INPUT SANITIZATION =====
+const nameInputs = Array.from(document.querySelectorAll('input[name="fullName"], .name-field'));
+nameInputs.forEach(input => {
+  if (input.dataset.nameSanitizeAttached) return;
+  input.dataset.nameSanitizeAttached = 'true';
+  input.addEventListener('input', () => {
+    input.value = input.value.replace(/[^a-zA-Z\s.'-]/g, '');
+  });
+});
 
-function attachPhoneValidatedSubmit(form) {
-  if (!form) return;
+const phoneInputs = Array.from(document.querySelectorAll('input[name="phone"], .phone-field'));
+phoneInputs.forEach(input => {
+  if (input.dataset.phoneSanitizeAttached) return;
+  input.dataset.phoneSanitizeAttached = 'true';
+  input.setAttribute('maxlength', '14');
+
+  const formatDigits = digits => {
+    if (!digits) return '';
+    digits = digits.slice(0,10);
+    if (digits.length > 6) return '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+    if (digits.length > 3) return '(' + digits.slice(0,3) + ') ' + digits.slice(3);
+    return '(' + digits;
+  };
+
+  input.addEventListener('input', () => {
+    let digits = input.value.replace(/\D/g, '');
+    input.value = digits ? formatDigits(digits) : '';
+  });
+
+  input.addEventListener('blur', () => {
+    const digits = input.value.replace(/\D/g, '').slice(0,10);
+    input.value = digits.length === 10 ? formatDigits(digits) : digits;
+  });
+});
+
+// ===== TESTIMONIALS =====
+const testimonials = [
+  { text: "Ember Commercial has access to deals that simply don’t circulate publicly. Their sourcing and underwriting process is disciplined, transparent, and thorough. Every opportunity we reviewed was well-vetted and professionally presented.", name: "David Harrington", role: "Commercial Real Estate Investor" },
+  { text: "From initial discussions through closing, Ember Commercial handled the transaction with precision. Their team managed negotiations, due diligence, and execution efficiently, making the entire process straightforward and reliable.", name: "Laura Mitchell", role: "Managing Partner, Private Investment Group" },
+  { text: "Ember Commercial understands the importance of discretion in off-market transactions. Their relationship driven approach and strong underwriting gave us confidence at every stage of the acquisition.", name: "Andrew Collins", role: "Principal, Commercial Asset Holdings" }
+];
+
+let current = 0;
+const card = document.getElementById("testimonialCard");
+const textEl = document.getElementById("testimonialText");
+const nameEl = document.getElementById("testimonialName");
+const roleEl = document.getElementById("testimonialRole");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function renderTestimonial(index) {
+  if (!prefersReducedMotion) card.classList.add("opacity-0", "translate-x-6");
+  setTimeout(() => {
+    textEl.textContent = testimonials[index].text;
+    nameEl.textContent = testimonials[index].name;
+    roleEl.textContent = testimonials[index].role;
+    if (!prefersReducedMotion) card.classList.remove("opacity-0", "translate-x-6");
+  }, prefersReducedMotion ? 0 : 300);
+}
+
+function nextTestimonial() { current = (current + 1) % testimonials.length; renderTestimonial(current); }
+function prevTestimonial() { current = (current - 1 + testimonials.length) % testimonials.length; renderTestimonial(current); }
+
+if (!prefersReducedMotion && !window.__emberTestimonialIntervalSet) {
+  setInterval(nextTestimonial, 3000);
+  window.__emberTestimonialIntervalSet = true;
+}
+renderTestimonial(current);
+
+let startX = 0;
+card.addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
+card.addEventListener("touchend", e => {
+  const endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) nextTestimonial();
+  if (endX - startX > 50) prevTestimonial();
+});
+
+// ================= FORM SUBMIT HANDLER =================
+document.querySelectorAll('.inquiryForm').forEach(form => {
   form.addEventListener('submit', e => {
     e.preventDefault();
-    const phoneInput = e.target.querySelector('input[name="phone"]');
-    const digits = cleanPhoneDigits(phoneInput ? phoneInput.value : '');
-    if (!isValidUSPhone(digits)){
-      if (window.Swal) {
-        Swal.fire({icon:'error',title:'Invalid phone',text:'Please enter a valid US phone number (10 digits).'});
-      } else {
-        alert('Please enter a valid US phone number (10 digits).');
-      }
-      return;
-    }
-    if (phoneInput) phoneInput.value = formatUSPhone(digits);
-    if (typeof sendEmail === 'function') {
-      sendEmail(e.target);
-    } else {
-      // fallback to native submit if no sendEmail handler is present
-      form.submit();
-    }
+    sendEmail(form);
   });
-}
+});
 
-attachPhoneValidatedSubmit(heroForm);
-attachPhoneValidatedSubmit(contactForm);
-
-
-  // Mobile menu controls: match IDs used in index.html
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const closeMenuBtn = document.getElementById('closeMenuBtn');
-
-  function openMobileMenu() {
-    if (!mobileMenu) return;
-    // remove hidden so element is rendered, then add menu-open to trigger transition
-    mobileMenu.classList.remove('hidden');
-    mobileMenu.setAttribute('aria-hidden', 'false');
-    // allow next frame for transition
-    requestAnimationFrame(() => mobileMenu.classList.add('menu-open'));
-    if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'true');
-    // lock background scroll but allow the menu itself to scroll
-    document.body.classList.add('overflow-hidden');
-    document.documentElement.classList.add('no-scroll');
-  }
-
-  function closeMobileMenu() {
-    if (!mobileMenu) return;
-    // start transition
-    mobileMenu.classList.remove('menu-open');
-    mobileMenu.setAttribute('aria-hidden', 'true');
-    if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
-    // restore scrolling
-    document.body.classList.remove('overflow-hidden');
-    document.documentElement.classList.remove('no-scroll');
-    // after transition ends, hide with `hidden` to remove from flow
-    const removeHidden = () => {
-      mobileMenu.classList.add('hidden');
-      mobileMenu.removeEventListener('transitionend', removeHidden);
-    };
-    // fallback timeout in case transitionend doesn't fire
-    mobileMenu.addEventListener('transitionend', removeHidden);
-    setTimeout(removeHidden, 300);
-  }
-
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', openMobileMenu);
-    if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
-
-    // Close when any link inside the menu is clicked
-    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMobileMenu();
-    });
-  }
-
-// Input sanitization: name fields (no numbers), phone fields (digits only)
+// ================= NAME SANITIZATION =================
 document.querySelectorAll('.name-field').forEach(input => {
   input.addEventListener('input', () => {
-    const clean = input.value.replace(/[^a-zA-Z\s.'-]/g, '');
-    if (input.value !== clean) input.value = clean;
+    input.value = input.value.replace(/[^a-zA-Z\s.'-]/g, '');
   });
 });
 
+// ================= PHONE FORMAT =================
 document.querySelectorAll('.phone-field').forEach(input => {
-  // allow formatted display but keep digits limited to 11 (allow leading 1)
-  input.setAttribute('maxlength', '18');
+  input.setAttribute('maxlength', '14');
+
+  const formatPhone = digits => {
+    if (digits.length > 6)
+      return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6,10)}`;
+    if (digits.length > 3)
+      return `(${digits.slice(0,3)}) ${digits.slice(3)}`;
+    return digits ? `(${digits}` : '';
+  };
+
   input.addEventListener('input', () => {
-    let digits = cleanPhoneDigits(input.value);
-    if (digits.length > 11) digits = digits.slice(0,11);
-    const formatted = formatUSPhone(digits);
-    if (input.value !== formatted) input.value = formatted;
+    let digits = input.value.replace(/\D/g, '').slice(0, 10);
+    input.value = formatPhone(digits);
   });
-  // on blur, ensure formatting is normalized
+
   input.addEventListener('blur', () => {
-    const digits = cleanPhoneDigits(input.value);
-    input.value = formatUSPhone(digits);
+    let digits = input.value.replace(/\D/g, '');
+    input.value = digits.length === 10 ? formatPhone(digits) : digits;
   });
 });
 
+// ================= SEND EMAIL =================
+async function sendEmail(form) {
+  if (form.dataset.sending === 'true') return;
+  form.dataset.sending = 'true';
 
-  const testimonials = [
-    {
-      text: "Ember Commercial has access to deals that simply don’t circulate publicly. Their sourcing and underwriting process is disciplined, transparent, and thorough. Every opportunity we reviewed was well-vetted and professionally presented.",
-      name: "David Harrington",
-      role: "Commercial Real Estate Investor"
-    },
-    {
-      text: "From initial discussions through closing, Ember Commercial handled the transaction with precision. Their team managed negotiations, due diligence, and execution efficiently, making the entire process straightforward and reliable.",
-      name: "Laura Mitchell",
-      role: "Managing Partner, Private Investment Group"
-    },
-    {
-      text: "Ember Commercial understands the importance of discretion in off-market transactions. Their relationship driven approach and strong underwriting gave us confidence at every stage of the acquisition.",
-      name: "Andrew Collins",
-      role: "Principal, Commercial Asset Holdings"
+  const get = name => form.querySelector(`[name="${name}"]`);
+
+  const phoneDigits = get('phone').value.replace(/\D/g, '');
+
+  if (phoneDigits.length !== 10) {
+    Swal.fire({
+      title: "Invalid Phone",
+      text: "Please enter a valid 10-digit phone number.",
+      icon: "warning"
+    });
+    form.dataset.sending = 'false';
+    return;
+  }
+
+  get('phone').value = `(${phoneDigits.slice(0,3)}) ${phoneDigits.slice(3,6)}-${phoneDigits.slice(6)}`;
+
+  const data = {
+    fullName: get('fullName').value.trim(),
+    email: get('email').value.trim(),
+    phone: get('phone').value.trim(),
+    address: get('address').value.trim(),
+    message: get('message').value.trim()
+  };
+
+  try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbw8Tozu4TR_dKQyc58XOR7EZ4NfQOIbcx_bgDffyrf9jvZBS4RoXsbY7AHZX0Xto0u4ig/exec", {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+
+    if (result.status === "success") {
+      Swal.fire("Thank you!", "We’ve received your message.", "success");
+      form.reset();
+    } else {
+      throw new Error("Submission failed");
     }
-  ];
-
-  let current = 0;
-  const card = document.getElementById("testimonialCard");
-  const textEl = document.getElementById("testimonialText");
-  const nameEl = document.getElementById("testimonialName");
-  const roleEl = document.getElementById("testimonialRole");
-
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  function renderTestimonial(index) {
-    if (!prefersReducedMotion) {
-      card.classList.add("opacity-0", "translate-x-6");
-    }
-
-    setTimeout(() => {
-      textEl.textContent = testimonials[index].text;
-      nameEl.textContent = testimonials[index].name;
-      roleEl.textContent = testimonials[index].role;
-
-      if (!prefersReducedMotion) {
-        card.classList.remove("opacity-0", "translate-x-6");
-      }
-    }, prefersReducedMotion ? 0 : 300);
+  } catch (err) {
+    Swal.fire("Error", err.message, "error");
+  } finally {
+    form.dataset.sending = 'false';
   }
-
-  function nextTestimonial() {
-    current = (current + 1) % testimonials.length;
-    renderTestimonial(current);
-  }
-
-  function prevTestimonial() {
-    current = (current - 1 + testimonials.length) % testimonials.length;
-    renderTestimonial(current);
-  }
-
-  // Auto slide every 3 seconds (disabled if reduced motion)
-  if (!prefersReducedMotion) {
-    setInterval(nextTestimonial, 3000);
-  }
-
-  // Initial render
-  renderTestimonial(current);
-
-  // Mobile swipe
-  let startX = 0;
-  card.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-  });
-
-  card.addEventListener("touchend", e => {
-    const endX = e.changedTouches[0].clientX;
-    if (startX - endX > 50) nextTestimonial();
-    if (endX - startX > 50) prevTestimonial();
-  });
-
+}

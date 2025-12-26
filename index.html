@@ -39,6 +39,7 @@ tailwind.config = {
 </script>
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="https://res.cloudinary.com/de7y9vclv/image/upload/v1766514593/Ember_commercial_jiiw76_bb0vrx.png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
 
 <body id="top" class="bg-slate-50 text-slate-800">
@@ -114,23 +115,58 @@ style="background-image:url('https://res.cloudinary.com/de7y9vclv/image/upload/v
     </div>
 
     <!-- HERO FORM -->
-    <form id="heroForm" class="bg-white text-slate-800 rounded-2xl p-8 md:p-10 shadow-xl space-y-5 max-w-md w-full mx-auto">
-      <h2 class="text-2xl font-semibold text-center mb-4">Submit Your Property</h2>
-      
-      <input name="name" required placeholder="Full Name" class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember" autocomplete="name">
-      
-      <input name="email" type="email" required placeholder="Email Address" class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember">
-      
-      <input name="phone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="15" required placeholder="Phone Number" class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember">
-      
-      <input name="address" placeholder="Property Address (Street, City, State)" required class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember">
-      
-      <textarea name="message" rows="4" placeholder="Tell us about your property or opportunity" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"></textarea>
-      
-      <button class="w-full bg-[#ae2535] text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition">
-        Send Details
-      </button>
-    </form>
+<form class="inquiryForm space-y-5">
+
+  <input
+    name="fullName"
+    required
+    placeholder="Full Name"
+    autocomplete="name"
+    class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember name-field"
+  >
+
+  <input
+    name="email"
+    type="email"
+    required
+    placeholder="Email Address"
+    class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"
+  >
+
+  <input
+    name="phone"
+    type="tel"
+    required
+    placeholder="Phone Number"
+    inputmode="numeric"
+    class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember phone-field"
+  >
+
+  <input
+    name="address"
+    required
+    placeholder="Property Address (Street, City, State)"
+    class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"
+  >
+
+  <textarea
+    name="message"
+    rows="4"
+    required
+    placeholder="Tell us about your property or opportunity"
+    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"
+  ></textarea>
+
+  <button
+    type="submit"
+    class="w-full bg-[#ae2535] text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition"
+  >
+    Send Details
+  </button>
+
+</form>
+
+
   </div>
 </section>
 
@@ -388,28 +424,53 @@ style="background-image:url('https://res.cloudinary.com/de7y9vclv/image/upload/v
         Start a Conversation
       </h3>
 
-<form id="locationForm" class="space-y-5">
+<form class="inquiryForm space-y-5">
 
-  <input name="name" required placeholder="Full Name" class="w-full border rounded-xl px-4 py-3 name-field border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"  autocomplete="name">
+  <input
+    name="fullName"
+    required
+    placeholder="Full Name"
+    autocomplete="name"
+    class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember name-field"
+  >
 
-    <input name="email" type="email" required placeholder="Email Address" class="w-full border rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember  px-4 py-3">
+  <input
+    name="email"
+    type="email"
+    required
+    placeholder="Email Address"
+    class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"
+  >
 
-    <input name="phone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="15" required placeholder="Phone Number" class="w-full border rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember px-4 py-3 phone-field">
+  <input
+    name="phone"
+    type="tel"
+    required
+    placeholder="Phone Number"
+    inputmode="numeric"
+    class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember phone-field"
+  >
 
-    <input name="address" placeholder="Property Address (Street, City, State)" required class="w-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember rounded-lg px-4 py-3">
+  <input
+    name="address"
+    required
+    placeholder="Property Address (Street, City, State)"
+    class="w-full border rounded-xl px-4 py-3 border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"
+  >
 
   <textarea
     name="message"
     rows="4"
+    required
     placeholder="Tell us about your property or opportunity"
-    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"
+    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-ember"
   ></textarea>
 
   <button
     type="submit"
-    class="w-full bg-[#ae2535] text-white py-3 rounded-lg font-semibold hover:bg-[#ae2535]-dark transition"
+    class="w-full bg-[#ae2535] text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition"
   >
-    Submit Inquiry
+    Send Details
   </button>
 
 </form>
