@@ -47,6 +47,22 @@ nameInputs.forEach(input => {
   });
 });
 
+  // smooth anchor scrolling
+        document.querySelectorAll('a[href^="#"]').forEach((a) => {
+            a.addEventListener("click", (e) => {
+                const href = a.getAttribute("href");
+                if (href && href.startsWith("#")) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: "smooth", block: "start" });
+                        // close mobile menu if open (smooth close)
+                        if (mobileMenu && mobileMenu.classList.contains('open')) closeMobileMenu();
+                    }
+                }
+            });
+        });
+        
 const phoneInputs = Array.from(document.querySelectorAll('input[name="phone"], .phone-field'));
 phoneInputs.forEach(input => {
   if (input.dataset.phoneSanitizeAttached) return;
