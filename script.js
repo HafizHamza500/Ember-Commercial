@@ -172,7 +172,7 @@ async function sendEmail(form) {
       title: "Invalid Phone",
       text: "Please enter a valid 10-digit phone number.",
       icon: "warning",
-      confirmButtonColor: "#137752"
+      confirmButtonColor: "#ae2535"
     });
     form.dataset.sending = 'false';
     if (submitBtn) {
@@ -194,7 +194,7 @@ async function sendEmail(form) {
 
   try {
     const res = await fetch(
-      "https://script.google.com/macros/s/AKfycbw8Tozu4TR_dKQyc58XOR7EZ4NfQOIbcx_bgDffyrf9jvZBS4RoXsbY7AHZX0Xto0u4ig/exec",
+      "https://script.google.com/macros/s/AKfycbztJOjMpZHF8cUXOzr4GmPRxbFTN0K1E1P2P1BIMJ0Qez9hCSEhGAy7QjZRErZiafsLgA/exec",
       {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
@@ -219,7 +219,7 @@ async function sendEmail(form) {
         `,
         icon: "success",
         confirmButtonText: "Close",
-        confirmButtonColor: "#137752"
+        confirmButtonColor: "#ae2535"
       });
       form.reset();
     } else {
@@ -230,7 +230,7 @@ async function sendEmail(form) {
       title: "Error",
       text: err.message,
       icon: "error",
-      confirmButtonColor: "#137752"
+      confirmButtonColor: "#ae2535"
     });
   } finally {
     form.dataset.sending = 'false';
