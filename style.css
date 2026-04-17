@@ -1,44 +1,84 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+
+/* ==================== SELECTION TEXT COLOR ==================== */
+::selection {
+    background: #ae2535;
+    color: #ffffff;
+}
+
+::-moz-selection {
+    background: #ae2535;
+    color: #ffffff;
+}
+/* ==================== SCROLLBAR - THICKER WIDTH ==================== */
+
+::-webkit-scrollbar {
+    width: 10px;     
+    height: 10px;   
+}
+
+/* Track (background) */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* Thumb (scroll handle) */
+::-webkit-scrollbar-thumb {
+    background: #ae2535;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+/* Hover effect */
+::-webkit-scrollbar-thumb:hover {
+    background: #8a1c2a;
 }
 
 .no-scroll {
-    overflow: hidden;
+  overflow: hidden;
 }
 
-/* For navi */ 
+/* ===== NAVIGATION ===== */
 @media (max-width: 900px) {
-  nav.md\\:flex, 
+  nav.md\:flex,
   .phone-desktop {
     display: none;
   }
-  /* Compact mobile menu: override Tailwind utility sizes for mobile menu links */
-  #mobileMenu {
-    font-size: 1rem; /* base font-size for the container */
-  }
 
-  #mobileMenu a {
-    font-size: 1rem !important; /* ensure smaller size than Tailwind's text-lg */
-    padding: 0.6rem 0.9rem !important; /* reduce large vertical spacing */
-    line-height: 1.2;
-  }
-
+  /* Header bar: logo left, hamburger right, NO extra text */
   header .max-w-7xl {
     justify-content: space-between;
+    align-items: center;
   }
 
-  /* Mobile menu show/hide animation */
+  /* Hide the "Ember Commercial" text span next to logo on mobile */
+  header .max-w-7xl > a > span {
+    display: block !important;
+  }
+
+  /* Make sure logo image shows properly */
+  header .max-w-7xl > a img {
+    display: block !important;
+    height: 2.25rem !important;
+    width: auto !important;
+  }
+
+  /* Mobile menu base state */
   #mobileMenu {
     opacity: 0;
     transform: translateY(-6px);
     transition: opacity 240ms ease, transform 200ms ease;
-    /* allow menu content to scroll independently of the body */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     max-height: 100vh;
+    font-size: 1rem;
   }
 
   #mobileMenu.menu-open {
@@ -46,17 +86,160 @@
     transform: translateY(0);
   }
 
-  /* mobile-link specific adjustments */
+  #mobileMenu a {
+    font-size: 1rem !important;
+    padding: 0.6rem 0.9rem !important;
+    line-height: 1.2;
+  }
+
   #mobileMenu .mobile-link {
     font-size: 1rem;
     padding: 0.5rem 0;
     display: block;
   }
 
-  /* ensure the call button inside mobile menu is full-width and centered */
   #mobileMenu a.call-button {
     display: block;
     width: 100%;
     text-align: center;
   }
+}
+
+/* ===== HERO SECTION ===== */
+#hero {
+  background-attachment: scroll !important;
+}
+
+@media (max-width: 768px) {
+  #hero .max-w-6xl {
+    grid-template-columns: 1fr !important;
+    padding-top: 6rem !important;
+    padding-bottom: 3rem !important;
+    gap: 2rem !important;
+  }
+
+  #hero h1 {
+    font-size: 2.2rem !important;
+    text-align: center;
+  }
+
+  #hero p {
+    font-size: 1rem !important;
+    text-align: center;
+  }
+
+  /* Form card full width */
+  #hero .bg-white {
+    padding: 1.5rem !important;
+  }
+}
+
+/* ===== ABOUT SECTION ===== */
+@media (max-width: 768px) {
+  #about .grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  #about img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ===== SERVICES SECTION ===== */
+@media (max-width: 768px) {
+  #services .space-y-20 {
+    gap: 2.5rem !important;
+  }
+
+  #services .flex {
+    gap: 1.25rem !important;
+  }
+
+  #services .text-4xl {
+    font-size: 2rem !important;
+  }
+}
+
+/* ===== HOW WE WORK / PROCESS ===== */
+@media (max-width: 768px) {
+  #process .grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  #process .md\:pl-10 {
+    padding-left: 0 !important;
+  }
+
+  /* Hide vertical timeline line on mobile */
+  #process .absolute.top-0.left-2 {
+    display: none !important;
+  }
+
+  #process img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ===== TESTIMONIAL ===== */
+@media (max-width: 768px) {
+  #testimonial .bg-white {
+    padding: 2rem 1.5rem !important;
+  }
+
+  #testimonialText {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* ===== LOCATION / MAP + FORM SECTION ===== */
+@media (max-width: 768px) {
+  #location .grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  #location .bg-white {
+    padding: 1.5rem !important;
+  }
+
+  #location img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ===== FORMS (all) ===== */
+@media (max-width: 480px) {
+  .inquiryForm input,
+  .inquiryForm textarea,
+  .inquiryForm button {
+    font-size: 0.95rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+}
+
+/* ===== FOOTER ===== */
+@media (max-width: 768px) {
+  footer .max-w-3xl {
+    padding: 1.5rem !important;
+  }
+
+  footer img {
+    height: 3rem !important;
+  }
+}
+
+/* ===== GENERAL HELPERS ===== */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent horizontal scroll globally */
+html, body {
+  overflow-x: hidden;
 }
